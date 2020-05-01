@@ -1,6 +1,7 @@
 // 要求
 
 // call
+
 Function.prototype.call2 = function(context) {
   if (typeof this !== "function") {
     throw new TypeError("not a function, Error");
@@ -10,7 +11,6 @@ Function.prototype.call2 = function(context) {
   // 保存默认的fn
   const { fn } = context;
 
-  // 前面讲的关键，将函数本身作为对象context的属性调用，自动绑定this
   context.fn = this;
   const args = [...arguments].slice(1);
   const result = context.fn(...args);
@@ -28,13 +28,6 @@ const testObject = {
   a: "funck a ",
   b: "funck b "
 };
-// testFunction.call2(
-//   {
-//     a: "aaab",
-//     b: "bbba"
-//   },
-//   1,
-//   2
-// );
+
 let test2 = testFunction.bind(testObject);
 test2(2, 3);
